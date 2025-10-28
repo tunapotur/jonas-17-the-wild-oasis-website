@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { createCabin } from "../../services/apiCabins";
 
 function CreateCabinForm() {
-  const { register, handleSubmit, reset, getValues, formState } = useForm();
+  const { register, handleSubmit, reset, formState } = useForm();
   const { errors } = formState;
 
   const queryClient = useQueryClient();
@@ -87,9 +87,9 @@ function CreateCabinForm() {
           defaultValue={0}
           {...register("discount", {
             required: "This field is required",
-            // validate: (value) =>
-            //   value <= getValues().regularPrice ||
-            //   "Discount should be less than regular price",
+            validate: (value, fieldValues) =>
+              Number(value) < Number(fieldValues.regularPrice) ||
+              "Discount should be less than regular price",
           })}
         />
       </FormRow>
