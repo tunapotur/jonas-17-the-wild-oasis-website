@@ -4,12 +4,15 @@ import { useCabins } from "./useCabins";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
 import { useSearchParams } from "react-router-dom";
+import Empty from "../../ui/Empty";
 
 function CabinTable() {
   const { isLoading, cabins } = useCabins();
   const [searchParams] = useSearchParams();
 
   if (isLoading) return <Spinner />;
+
+  if (!cabins.length) return <Empty resourceName="cabins" />;
 
   function compareText(a, b) {
     if (a[field].toLowerCase() < b[field].toLowerCase()) {
@@ -36,14 +39,14 @@ function CabinTable() {
     filteredCabins = cabins.filter((cabin) => cabin.discount > 0);
 
   // 2) SORT
-  const sortBy = searchParams.get("sortBy") || "startDate-asc";
+  const sortBy = searchParams.get("sortBy") || "name-asc";
   const [field, direction] = sortBy.split("-");
   const modifier = direction === "asc" ? 1 : -1;
 
-  const sortedCabins =
-    typeof cabins[0][field] === "number"
-      ? filteredCabins.sort(compareNumbers)
-      : filteredCabins.sort(compareText);
+  const sortedCabins = filteredCabins.sort(compareNumbers);
+  typeof cabins[0][field] === "number"
+    ? filteredCabins.sort(compareNumbers)
+    : filteredCabins.sort(compareText);
 
   return (
     <Menus>
