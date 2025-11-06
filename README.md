@@ -1,8 +1,33 @@
-# React + Vite
+# 389-397 Authentication and Authorization Part Pages notes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## npm packages
 
-Currently, two official plugins are available:
+npm install react-error-boundary@4
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+npm i recharts@2
+
+## pages
+
+- app.jsx
+- pages/Login.jsx
+- pages/Users.jsx
+- features/authentication/LoginForm.jsx
+- features/authentication/Logout.jsx
+- features/authentication/SignupForm.jsx
+- features/authentication/useUser.js
+- features/authentication/useLogin.js
+- features/authentication/useLogout.js
+- features/authentication/useSignup.js
+- services/apiAuth.js
+- ui/Heading.jsx
+- ui/Header.jsx
+- ui/FormRowVertical.jsx
+- ui/ProtectedRoute.jsx
+
+temp-mail.org
+
+## User
+
+user: jonas@example.com
+
+pass: pass0987
