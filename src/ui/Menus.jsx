@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 
 const Menu = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -30,7 +31,8 @@ const StyledToggle = styled.button`
 `;
 
 const StyledList = styled.ul`
-  position: fixed;
+  position: absolute;
+  z-index: 1;
 
   background-color: var(--color-grey-0);
   box-shadow: var(--shadow-md);
@@ -48,6 +50,7 @@ const StyledButton = styled.button`
   padding: 1.2rem 2.4rem;
   font-size: 1.4rem;
   transition: all 0.2s;
+  white-space: nowrap;
 
   display: flex;
   align-items: center;
@@ -90,9 +93,10 @@ function Toggle({ id }) {
     e.stopPropagation();
 
     const rect = e.target.closest("button").getBoundingClientRect();
+
     setPosition({
-      x: window.innerWidth - rect.width - rect.x,
-      y: rect.y + rect.height + 8,
+      x: rect.width,
+      y: rect.height,
     });
 
     openId === "" || openId !== id ? open(id) : close();
@@ -111,11 +115,10 @@ function List({ id, children }) {
 
   if (openId !== id) return null;
 
-  return createPortal(
+  return (
     <StyledList position={position} ref={ref}>
       {children}
-    </StyledList>,
-    document.body
+    </StyledList>
   );
 }
 
