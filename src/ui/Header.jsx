@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import HeaderMenu from "./HeaderMenu";
-// TODO: Bu hatayı düzelt
 import UserAvatar from "../features/authentication/UserAvatar";
 
 const StyledHeader = styled.header`
