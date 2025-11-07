@@ -34,7 +34,12 @@ function App() {
         <ReactQueryDevtools initialIsOpen={false} />
 
         <GlobalStyles />
-        <BrowserRouter>
+        <BrowserRouter
+          future={{
+            v7_startTransition: true,
+            v7_relativeSplatPath: true,
+          }}
+        >
           <Routes>
             <Route
               element={
